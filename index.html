@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Max Profit — Mars Land</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h4>Max Profit</h4>
+    <p>Find the optimal mix of buildings to maximise earnings on Mars Land within your time budget.</p>
+  </div>
+  <div class="body-layout">
+    <aside class="left-col">
+      <div class="left-col-title">Building Reference</div>
+      <div class="building-card theatre">
+        <div class="bc-label">Building A</div>
+        <div class="bc-name">Theatre</div>
+        <div class="bc-stat"><span>Build time</span><span>5 units</span></div>
+        <div class="bc-stat"><span>Land</span><span>2 × 1</span></div>
+        <div class="bc-stat"><span>Earn / unit</span><span>$1,500</span></div>
+        <div class="bc-stat"><span>Auditoriums</span><span>8</span></div>
+        <div class="bc-stat"><span>Code</span><span>T</span></div>
+      </div>
+      <div class="building-card pub">
+        <div class="bc-label">Building B</div>
+        <div class="bc-name">Pub</div>
+        <div class="bc-stat"><span>Build time</span><span>4 units</span></div>
+        <div class="bc-stat"><span>Land</span><span>1 × 1</span></div>
+        <div class="bc-stat"><span>Earn / unit</span><span>$1,000</span></div>
+        <div class="bc-stat"><span>Dance floors</span><span>1</span></div>
+        <div class="bc-stat"><span>Code</span><span>P</span></div>
+      </div>
+      <div class="building-card comm">
+        <div class="bc-label">Building C</div>
+        <div class="bc-name">Commercial Park</div>
+        <div class="bc-stat"><span>Build time</span><span>10 units</span></div>
+        <div class="bc-stat"><span>Land</span><span>3 × 1</span></div>
+        <div class="bc-stat"><span>Earn / unit</span><span>$2,000</span></div>
+        <div class="bc-stat"><span>Spaces</span><span>6</span></div>
+        <div class="bc-stat"><span>Code</span><span>C</span></div>
+      </div>
+    </aside>
+    <main class="right-col">
+      <div class="input-card">
+        <div class="input-row">
+          <div class="input-group">
+            <label for="time-input">Time Units (n)</label>
+            <input type="number" id="time-input" min="1" max="200" value="13" placeholder="e.g. 13"/>
+          </div>
+          <button class="btn-solve" onclick="runSolver()">Solve →</button>
+        </div>
+        <!-- <div class="presets-row">
+          <span class="preset-label">Try:</span>
+          <button class="preset-btn" onclick="runPreset(7)">n = 7</button>
+          <button class="preset-btn" onclick="runPreset(8)">n = 8</button>
+          <button class="preset-btn" onclick="runPreset(13)">n = 13</button>
+          <button class="preset-btn" onclick="runPreset(20)">n = 20</button>
+          <button class="preset-btn" onclick="runPreset(25)">n = 25</button>
+          <button class="preset-btn" onclick="runPreset(50)">n = 50</button>
+        </div> -->
+      </div>
+      <div class="result-section" id="result-section">
+        <div class="earnings-banner">
+          <div>
+            <div class="earnings-label">Maximum Earnings</div>
+            <div class="earnings-value" id="earnings-value">$0</div>
+            <div class="earnings-meta" id="earnings-meta"></div>
+          </div>
+          <div class="pills-group">
+            <div class="time-pill">
+              <div class="time-pill-label">Time</div>
+              <div class="time-pill-value" id="time-display">0</div>
+              <div class="time-pill-label">Units</div>
+            </div>
+            <div class="time-pill">
+              <div class="time-pill-label">Buildings</div>
+              <div class="time-pill-value" id="buildings-display">0</div>
+              <div class="time-pill-label">Total</div>
+            </div>
+          </div>
+        </div>
+        <div class="solutions-card">
+          <div class="solutions-header">
+            <span>Optimal Solutions</span>
+            <span id="sol-count-label"></span>
+          </div>
+          <div class="solutions-list" id="solutions-list"></div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-header">Build Timeline — Best Solution</div>
+          <div class="timeline-body">
+            <div class="timeline-track" id="timeline-track"></div>
+            <div class="timeline-legend">
+              <div class="tl-legend-item"><div class="tl-legend-dot" style="background:#7c3aed"></div>Theatre (5u)</div>
+              <div class="tl-legend-item"><div class="tl-legend-dot" style="background:#0ea5e9"></div>Pub (4u)</div>
+              <div class="tl-legend-item"><div class="tl-legend-dot" style="background:#10b981"></div>Commercial (10u)</div>
+              <div class="tl-legend-item"><div class="tl-legend-dot" style="background:#191d26;border:1px solid #252b38"></div>Idle</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-table">
+          <div class="step-table-header">Step-by-Step Earnings Breakdown</div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Building</th>
+                  <th>Build Start</th>
+                  <th>Operational At</th>
+                  <th>Time Remaining</th>
+                  <th>Earnings</th>
+                  <th>Running Total</th>
+                </tr>
+              </thead>
+              <tbody id="step-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
